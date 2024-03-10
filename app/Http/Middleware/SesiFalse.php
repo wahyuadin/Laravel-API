@@ -21,7 +21,7 @@ class SesiFalse
     public function handle(Request $request, Closure $next)
     {
         if (Session::has('data') && !empty(Session::get('data')->token)) {
-            $sesitoken = Http::asForm()->post('https://initiatory-equation.000webhostapp.com/api/session.php', [
+            $sesitoken = Http::asForm()->post(config('app.data').'/api/session.php', [
                 'token' => Session::get('data')->token
             ]);
 

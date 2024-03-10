@@ -24,7 +24,7 @@ class SesiTrue
     }
 
     $token = Session::get('data')->token;
-    $sesitoken = Http::asForm()->post('https://initiatory-equation.000webhostapp.com/api/session.php', ['token' => $token]);
+    $sesitoken = Http::asForm()->post(config('app.data').'/api/session.php', ['token' => $token]);
 
     if ($sesitoken->failed() || json_decode($sesitoken->body())->status != 'success') {
         $this->clearSessionAndToken();

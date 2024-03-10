@@ -37,7 +37,7 @@ class DashboardController extends Controller
 
                 ]);
                 $response = Http::attach('profile',file_get_contents($request->file('foto')->getRealPath()),
-                $request->file('foto')->getClientOriginalName())->post('https://initiatory-equation.000webhostapp.com/api/gambar.php',
+                $request->file('foto')->getClientOriginalName())->post(config('app.data').'/api/gambar.php',
                     ['token'   => Session::get('data')->token,
                         'id'   => Session::get('data')->data->id]);
                 if ($response->successful()) {
@@ -52,7 +52,7 @@ class DashboardController extends Controller
                     'sampul.max'        => 'Ukuran file gambar tidak boleh melebihi 2MB.',
                 ]);
                 $response = Http::attach('sampul',file_get_contents($request->file('sampul')->getRealPath()),
-                $request->file('sampul')->getClientOriginalName())->post('https://initiatory-equation.000webhostapp.com/api/sampul.php',
+                $request->file('sampul')->getClientOriginalName())->post(config('app.data').'/api/sampul.php',
                     ['token'   => Session::get('data')->token,
                         'id'   => Session::get('data')->data->id]);
                 if ($response->successful()) {
@@ -70,7 +70,7 @@ class DashboardController extends Controller
     }
 
     public function get() {
-        $response = Http::asForm()->post("https://initiatory-equation.000webhostapp.com/api/data.php", [
+        $response = Http::asForm()->post(config('app.data')."/api/data.php", [
             'token' => Session::get('data')->token,
         ]);
         $data_api = json_decode($response->body())->data;
@@ -98,7 +98,7 @@ class DashboardController extends Controller
 
     private function getDataFromAPI($endpoint) {
         if (Session::has('data')) {
-            return Http::get("https://initiatory-equation.000webhostapp.com/api/$endpoint.php", [
+            return Http::get(config('app.data')."/api/$endpoint.php", [
                 'id' => Session::get('data')->data->id,
                 'token' => Session::get('data')->token,
             ]);
