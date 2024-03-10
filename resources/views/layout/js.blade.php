@@ -5,15 +5,20 @@
 
 
 <!-- Apex Chart -->
-<script src="{{ asset('vendor/apexchart/apexchart.js') }}"></script>
+{{-- <script src="vendor/apexchart/apexchart.js"></script> --}}
+<script src="vendor/owl-carousel/owl.carousel.js"></script>
 
-<!-- Chart piety plugin files -->
-<script src="{{ asset('vendor/peity/jquery.peity.min.js') }}"></script>
 
 <!-- Dashboard 1 -->
 <script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script>
+<script src="{{ asset('js/dashboard/analytics.js') }}"></script>
+
+<!-- Chart piety plugin files -->
+<script src="vendor/peity/jquery.peity.min.js"></script>
 
 <script src="{{ asset('js/custom.min.js') }}"></script>
 <script src="{{ asset('js/deznav-init.js') }}"></script>
 {{-- <script src="{{ asset('js/demo.js') }}"></script> --}}
 {{-- <script src="{{ asset('js/styleSwitcher.js') }}"></script> --}}
+
+

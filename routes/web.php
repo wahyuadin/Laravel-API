@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware([SesiTrue::class])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::any('/profile', [DashboardController::class, 'profile'])->name('profile');
-    Route::get('/tes', [DashboardController::class, 'get']);
+    Route::any('/api', [DashboardController::class, 'get']);
+    Route::get('/tes', [DashboardController::class,'tes'])->name('tes');
 });
 Route::middleware([SesiFalse::class])->group(function () {
     Route::any('/register', [AuthentifikasiController::class, 'register'])->name('register');
     Route::any('/', [AuthentifikasiController::class, 'login'])->name('login');
 });
 Route::get('/logout', [AuthentifikasiController::class,'logout'])->name('logout');
+
 

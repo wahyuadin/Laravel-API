@@ -21,6 +21,7 @@
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 	<link rel="stylesheet" href="{{ asset('vendor/chartist/css/chartist.min.css') }}">
+    <link href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
 	<link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
 	<!-- Style css -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -132,6 +133,8 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    @include('layout.js');
+    <!-- Required vendors -->
+
+    @include('layout.js')
 </body>
 </html>

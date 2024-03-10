@@ -2,12 +2,12 @@
 
 (function($) {
     /* "use strict" */
-	
+
  var dzChartlist = function(){
-	
+
 	let draw = Chart.controllers.line.__super__.draw; //draw shadow
 	var screenWidth = $(window).width();
-	
+
 	var donutChart1 = function(){
 		$("span.donut1").peity("donut", {
 			width: "90",
@@ -25,11 +25,11 @@
 				$("span.donut1").peity("donut", {width: '90', height: '90'});
 			}
 		})
-		
+
 	}
-	
+
 	var chartTimeline1 = function(){
-		
+
 		var optionsTimeline = {
 			chart: {
 				type: "bar",
@@ -49,12 +49,12 @@
 					data: [300, 450, 200, 600, 400, 350, 410, 470, 480, 700, 500, 400, 400, 600, 250, 250, 500, 450, 300, 400, 200]
 				}
 			],
-			
+
 			plotOptions: {
 				bar: {
 					columnWidth: "20%",
 					borderRadius: 5,
-					
+
 					colors: {
 						backgroundBarOpacity: 1,
 						backgroundBarRadius: 5,
@@ -63,14 +63,14 @@
 				},
 				distributed: true
 			},
-			
+
 			colors:['var(--primary)'],
 			grid: {
 				show: true,
 				strokeDashArray: 3,
 				borderColor: '#9B9B9B',
-			
-			
+
+
 			},
 			legend: {
 				show: false
@@ -90,7 +90,7 @@
 			  }
 			},
 			stroke:{
-				 show: true,	
+				 show: true,
 				 curve: 'smooth',
 				 lineCap: 'rounded',
 			},
@@ -114,7 +114,7 @@
 			axisTicks:{
 				  show: false,
 			},
-				
+
 			},
 			yaxis: {
 			labels: {
@@ -123,7 +123,7 @@
 				  fontSize: '14px',
 				   fontFamily: 'Poppins',
 				  fontWeight: 100,
-				  
+
 				},
 				 formatter: function (y) {
 						  return y.toFixed(0) + "";
@@ -156,14 +156,15 @@
 		var chartTimelineRender =  new ApexCharts(document.querySelector("#chartTimeline1"), optionsTimeline);
 		 chartTimelineRender.render();
 	}
+
 	var revenueChart = function(){
 	  var options = {
 		  series: [
 			{
-				name: 'Net Profit',
-				data: [20, 30, 20, 30, 20, 30, 20,30],
-				//radius: 12,	
-			}, 				
+				name: 'Kelembaban',
+				data: [20,30,20,30,30,20,30,30,20,30],
+				//radius: 12,
+			}
 		],
 			chart: {
 			type: 'area',
@@ -171,7 +172,7 @@
 			toolbar: {
 				show: false,
 			},
-			
+
 		},
 		plotOptions: {
 		  bar: {
@@ -197,23 +198,23 @@
 		  curve:'smooth',
 		  colors:['var(--primary)'],
 		},
-		
+
 		grid: {
 			borderColor: '#eee',
 			xaxis: {
 				lines: {
 					show: true
 				}
-			},   
+			},
 			yaxis: {
 				lines: {
 					show: false
 				}
-			},  
+			},
 		},
 		xaxis: {
-			
-		  categories: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00'],
+
+		  categories: ["2024-02-29 13:40:20", "2024-02-29 13:41:51", "2024-02-29 13:44:12", "2024-02-29 13:44:57", "2024-02-29 13:47:32", "2024-02-29 13:47:42", "2024-02-29 13:48:32", "2024-02-29 13:52:26", "2024-02-29 13:52:51", "2024-02-29 13:53:35"],
 		  labels: {
 			style: {
 				colors: '#7E7F80',
@@ -228,7 +229,7 @@
 		  }
 		},
 		yaxis: {
-		show:true,	
+		show:true,
 		labels: {
 			offsetX: -15,
 		   style: {
@@ -236,7 +237,7 @@
 			  fontSize: '14px',
 			   fontFamily: 'Poppins',
 			  fontWeight: 100,
-			  
+
 			},
 			 formatter: function (y) {
 					  return y.toFixed(0) + "";
@@ -251,7 +252,7 @@
 		tooltip: {
 		  y: {
 			formatter: function (val) {
-			  return "$ " + val + " thousands"
+			  return val + " Derajat"
 			}
 		  }
 		}
@@ -259,11 +260,11 @@
 
 		var chartBar1 = new ApexCharts(document.querySelector("#revenueChart"), options);
 		chartBar1.render();
-	 
-		 
+
+
 	}
 	var chartTimeline2 = function(){
-		
+
 		var optionsTimeline = {
 			chart: {
 				type: "bar",
@@ -283,12 +284,12 @@
 					data: [300, 450, 200, 600, 400, 350, 410, 470, 480, 700, 500, 400, 400, 600, 250, 250, 500, 450, 300, 400, 200]
 				}
 			],
-			
+
 			plotOptions: {
 				bar: {
 					columnWidth: "20%",
 					borderRadius: 5,
-					
+
 					colors: {
 						backgroundBarOpacity: 1,
 						backgroundBarRadius: 5,
@@ -297,14 +298,14 @@
 				},
 				distributed: true
 			},
-			
+
 			colors:['var(--primary)'],
 			grid: {
 				show: true,
 				strokeDashArray: 3,
 				borderColor: '#9B9B9B',
-			
-			
+
+
 			},
 			legend: {
 				show: false
@@ -324,7 +325,7 @@
 			  }
 			},
 			stroke:{
-				 show: true,	
+				 show: true,
 				 curve: 'smooth',
 				 lineCap: 'rounded',
 			},
@@ -348,7 +349,7 @@
 			axisTicks:{
 				  show: false,
 			},
-				
+
 			},
 			yaxis: {
 			labels: {
@@ -357,7 +358,7 @@
 				  fontSize: '14px',
 				   fontFamily: 'Poppins',
 				  fontWeight: 100,
-				  
+
 				},
 				 formatter: function (y) {
 						  return y.toFixed(0) + "";
@@ -391,7 +392,7 @@
 		 chartTimelineRender.render();
 	}
 	var chartTimeline3 = function(){
-		
+
 		var optionsTimeline = {
 			chart: {
 				type: "bar",
@@ -411,12 +412,12 @@
 					data: [300, 450, 200, 600, 400, 350, 410, 470, 480, 700, 500, 400, 400, 600, 250, 250, 500, 450, 300, 400, 200]
 				}
 			],
-			
+
 			plotOptions: {
 				bar: {
 					columnWidth: "20%",
 					borderRadius: 5,
-					
+
 					colors: {
 						backgroundBarOpacity: 1,
 						backgroundBarRadius: 5,
@@ -425,14 +426,14 @@
 				},
 				distributed: true
 			},
-			
+
 			colors:['var(--primary)'],
 			grid: {
 				show: true,
 				strokeDashArray: 3,
 				borderColor: '#9B9B9B',
-			
-			
+
+
 			},
 			legend: {
 				show: false
@@ -452,7 +453,7 @@
 			  }
 			},
 			stroke:{
-				 show: true,	
+				 show: true,
 				 curve: 'smooth',
 				 lineCap: 'rounded',
 			},
@@ -476,7 +477,7 @@
 			axisTicks:{
 				  show: false,
 			},
-				
+
 			},
 			yaxis: {
 			labels: {
@@ -485,7 +486,7 @@
 				  fontSize: '14px',
 				   fontFamily: 'Poppins',
 				  fontWeight: 100,
-				  
+
 				},
 				 formatter: function (y) {
 						  return y.toFixed(0) + "";
@@ -518,39 +519,39 @@
 		var chartTimelineRender =  new ApexCharts(document.querySelector("#chartTimeline3"), optionsTimeline);
 		 chartTimelineRender.render();
 	}
-	
-	
- 
+
+
+
 	/* Function ============ */
 		return {
 			init:function(){
 			},
-			
-			
+
+
 			load:function(){
-				donutChart1();	
+				donutChart1();
 				revenueChart();
 				chartTimeline1();
 				chartTimeline2();
 				chartTimeline3();
-				
+
 			},
-			
+
 			resize:function(){
 			}
 		}
-	
+
 	}();
 
-	
-		
+
+
 	jQuery(window).on('load',function(){
 		setTimeout(function(){
 			dzChartlist.load();
-		}, 1000); 
-		
+		}, 1000);
+
 	});
 
-     
+
 
 })(jQuery);
