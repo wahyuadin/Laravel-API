@@ -73,6 +73,7 @@ class DashboardController extends Controller
         $response = Http::asForm()->post(config('app.data')."/api/data.php", [
             'token' => Session::get('data')->token,
         ]);
+        // dd($response->body());
         $data_api = json_decode($response->body())->data;
 
         $data = [];

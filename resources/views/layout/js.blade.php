@@ -10,8 +10,8 @@
 
 
 <!-- Dashboard 1 -->
-<script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script>
-<script src="{{ asset('js/dashboard/analytics.js') }}"></script>
+{{-- <script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script> --}}
+{{-- <script src="{{ asset('js/dashboard/analytics.js') }}"></script> --}}
 
 <!-- Chart piety plugin files -->
 <script src="vendor/peity/jquery.peity.min.js"></script>

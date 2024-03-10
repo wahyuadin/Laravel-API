@@ -100,21 +100,21 @@
                 data: [],
                 fill: false,
                 borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Background color for temperature dataset
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 tension: 0.3
             }, {
                 label: 'Humidity (%)',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(54, 162, 235)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color for humidity dataset
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 tension: 0.3
             },{
                 label: 'Pressure (hPa)',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(255, 205, 86)',
-                backgroundColor: 'rgba(255, 205, 86, 0.2)', // Background color for pressure dataset
+                backgroundColor: 'rgba(255, 205, 86, 0.2)',
                 tension: 0.3
             }]
         },
@@ -147,11 +147,8 @@
                     chart.data.datasets[1].data.push(row.humidity);
                     chart.data.datasets[2].data.push(row.pressure);
                     if (index === data.length - 1) {
-                        // Kapitalisasi huruf pertama dari status dan value
                         var formattedStatus = row.status.charAt(0).toUpperCase() + row.status.slice(1).toLowerCase();
                         var formattedValue = row.value.charAt(0).toUpperCase() + row.value.slice(1).toLowerCase();
-
-                        // Update teks status dan value untuk item terakhir
                         $('#statusText').text(formattedStatus);
                         $('#valueText').text(formattedValue);
                     }
