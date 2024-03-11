@@ -18,12 +18,12 @@
             <div class="col-lg-12">
                 <div class="profile card card-body px-3 pt-3 pb-0">
                     <div class="profile-head">
-                        <div class="photo-content" style="background: url({{ json_decode($sampul->body())->data }});">
+                        <div class="photo-content" style="background: url({{ json_decode($sampul)->data }});">
                             <div class="cover-photo rounded"></div>
                         </div>
                         <div class="profile-info">
                             <div class="profile-photo">
-                                <img src="{{ json_decode($profile->body())->data }}" class="img-fluid rounded-circle" alt="">
+                                <img src="{{ json_decode($profile)->data }}" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="profile-details">
                                 <div class="profile-name px-3 pt-2">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ModelToken;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,7 +16,7 @@ class AuthentifikasiController extends Controller
     public function login(Request $request) {
         if ($request->has('login')) {
             $this->validate($request,['username' => 'required', 'password' => 'required']);
-            $response = Http::asForm()->post('https://initiatory-equation.000webhostapp.com/api/api-login.php', [
+            $response = Http::asForm()->post(config('app.data').'/api/api-login.php', [
                 'username' => $request->username,
                 'password' => $request->password,
             ]);
@@ -58,7 +60,7 @@ class AuthentifikasiController extends Controller
                 'password.min'          => 'Password harus memiliki minimal :min karakter.',
                 'repassword.required'   => 'Konfirmasi password harus diisi.'
             ]);
-            $response = Http::asForm()->post('https://initiatory-equation.000webhostapp.com/api/api-register.php', [
+            $response = Http::asForm()->post(config('app.data').'/api/api-register.php', [
                 'username' => $request->username,
                 'password' => $request->repassword,
                 'nama' => $request->nama,
@@ -84,7 +86,8 @@ class AuthentifikasiController extends Controller
     public function logout() {
         if (Session::has('data')) {
             ModelToken::where('token', '=', Session::get('data')->token)->delete();
-            Session::forget('data');
+            Session::flush();
+            Cache::flush();
             Alert::success('Success', 'Berhasil Logout');
             return redirect(route('login'));
         }

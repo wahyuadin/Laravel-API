@@ -131,16 +131,18 @@
 
     function updateChart() {
         $.ajax({
-            url: 'http://127.0.0.1:8000/api/',
+            url: 'api',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
+                console.log(data);
                 chart.data.labels = [];
                 chart.data.datasets[0].data = [];
                 chart.data.datasets[1].data = [];
                 chart.data.datasets[2].data = [];
                 var status  = data[3].status;
                 var value   = data[3].value;
+
                 data.forEach(function(row, index) {
                     chart.data.labels.push(row.timestamp);
                     chart.data.datasets[0].data.push(row.temperature);

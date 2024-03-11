@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,8 +15,14 @@ class DashboardController extends Controller
 
     public function __construct() {
         $this->middleware(function ($request, $next) {
-            $this->sampul = $this->getDataFromAPI('sampul');
-            $this->pp = $this->getDataFromAPI('gambar');
+            $cache = Cache::remember('cachegambar', 300, function() {
+                return [
+                    'sampul'    => $this->getDataFromAPI('sampul')->body(),
+                    'profile'   => $this->getDataFromAPI('gambar')->body()
+                ];
+            });
+            $this->sampul   = $cache['sampul'];
+            $this->pp       = $cache['profile'];
             return $next($request);
         });
     }
@@ -42,6 +49,7 @@ class DashboardController extends Controller
                         'id'   => Session::get('data')->data->id]);
                 if ($response->successful()) {
                     $respon = json_decode($response->body());
+                    Cache::flush();
                     Alert::success($respon->status,"Gambar Berhasil Diunggah!");
                 }
                 return redirect(route('profile'));
@@ -57,6 +65,7 @@ class DashboardController extends Controller
                         'id'   => Session::get('data')->data->id]);
                 if ($response->successful()) {
                     $respon = json_decode($response->body());
+                    Cache::flush();
                     Alert::success($respon->status,"Gambar Berhasil Diunggah!");
                 }
                 return redirect(route('profile'));
@@ -73,7 +82,6 @@ class DashboardController extends Controller
         $response = Http::asForm()->post(config('app.data')."/api/data.php", [
             'token' => Session::get('data')->token,
         ]);
-        // dd($response->body());
         $data_api = json_decode($response->body())->data;
 
         $data = [];

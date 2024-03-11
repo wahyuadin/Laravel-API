@@ -9,7 +9,7 @@
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown  header-profile">
                         <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                            <img src="{{ json_decode($profile->body())->data }}" width="56" alt="">
+                            <img src="{{ json_decode($profile)->data }}" width="56" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="{{ route('profile') }}" class="dropdown-item ai-icon">

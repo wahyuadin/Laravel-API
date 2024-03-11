@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\ModelToken;
 use Closure;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,10 +24,11 @@ class SesiTrue
         return $this->redirectToLogin('Anda tidak dapat mengakses halaman ini');
     }
 
-    $token = Session::get('data')->token;
-    $sesitoken = Http::asForm()->post(config('app.data').'/api/session.php', ['token' => $token]);
+    $sesitoken = Cache::remember('sesitrue', 10, function() {
+        return Http::asForm()->post(config('app.data').'/api/session.php', ['token' => Session::get('data')->token])->body();
+    });
 
-    if ($sesitoken->failed() || json_decode($sesitoken->body())->status != 'success') {
+    if (json_decode($sesitoken)->status != 'success') {
         $this->clearSessionAndToken();
         return $this->redirectToLogin($sesitoken->failed() ? 'Gagal menghubungkan ke API!' : 'Token has been expired!');
     }
@@ -36,6 +38,8 @@ class SesiTrue
 
     private function redirectToLogin($message)
     {
+        Cache::flush();
+        Session::flush();
         Alert::error('Gagal', $message);
         return redirect(route('login'));
     }
@@ -44,6 +48,7 @@ class SesiTrue
     {
         ModelToken::where('token', '=', Session::get('data')->token)->delete();
         Session::forget('data');
+        Cache::flush();
     }
 }
 
